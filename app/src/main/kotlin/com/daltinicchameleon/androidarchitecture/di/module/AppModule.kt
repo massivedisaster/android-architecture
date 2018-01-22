@@ -1,4 +1,4 @@
-package com.daltinicchameleon.androidarchitecture.di
+package com.daltinicchameleon.androidarchitecture.di.module
 
 import dagger.Module
 

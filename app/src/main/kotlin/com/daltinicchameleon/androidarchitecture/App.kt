@@ -1,6 +1,6 @@
 package com.daltinicchameleon.androidarchitecture
 
-import dagger.android.AndroidInjector
+import com.daltinicchameleon.androidarchitecture.di.component.DaggerAppComponent
 import dagger.android.support.DaggerApplication
 
 /**
@@ -8,7 +8,5 @@ import dagger.android.support.DaggerApplication
  */
 class App : DaggerApplication() {
 
-    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun applicationInjector() = DaggerAppComponent.builder().application(this).build()
 }
