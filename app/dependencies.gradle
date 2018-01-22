@@ -1,0 +1,60 @@
+apply plugin: 'kotlin-kapt'
+apply from: 'libraries.gradle'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    /** DEFAULT **/
+
+    // KOTLIN
+    implementation kotlin.base
+
+    // ARCHITECTURE
+    implementation architecture.lifecycle
+    kapt architecture.lifecycleCompiler
+    implementation architecture.room
+    kapt architecture.roomCompiler
+
+    // APP COMPAT
+    implementation appCompat.base
+
+    // DAGGER
+    implementation dagger.base
+    kapt dagger.compiler
+    implementation dagger.android
+    kapt dagger.androidProcessor
+    implementation dagger.androidSupport
+
+    // DATA BINDING
+    kapt dataBinding.compiler
+
+    // GLIDE
+    implementation glide.base
+
+    // MASSIVE DISASTER
+    implementation massiveDisaster.adalAccounts
+    implementation massiveDisaster.adalPermissions
+
+    // OK HTTP
+    implementation okHttp.logging
+
+    // RETROFIT
+    implementation retrofit.base
+
+    /** BUG REPORT **/
+
+    // CRASHLYTICS
+    implementation('com.crashlytics.sdk.android:crashlytics:2.8.0@aar') {
+        transitive = true
+    }
+
+    /** TEST **/
+
+    // JUNIT
+    testImplementation jUnit.base
+
+    // ESPRESSO
+    androidTestImplementation(espresso.core, {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+}

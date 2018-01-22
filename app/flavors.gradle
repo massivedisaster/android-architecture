@@ -1,0 +1,28 @@
+android {
+    productFlavors {
+
+        qa {
+            dimension "APP"
+            versionCode 1
+            versionName "0.0.1"
+            applicationId "com.daltinicchameleon.androidarchitecture.qa"
+            buildConfigField "String", "API_URL", "\"http://kickoff2018.azurewebsites.net/api/\""
+        }
+
+        dev {
+            dimension "APP"
+            versionCode 1
+            versionName "1.0.0"
+            applicationId "com.daltinicchameleon.androidarchitecture.dev"
+            buildConfigField "String", "API_URL", "\"http://kickoff2018.azurewebsites.net/api/\""
+        }
+
+        prod {
+            dimension "APP"
+            versionCode 1
+            versionName "0.0.1"
+            applicationId "com.daltinicchameleon.androidarchitecture.prod"
+            buildConfigField "String", "API_URL", "\"http://kickoff2018.azurewebsites.net/api/\""
+        }
+    }
+}
