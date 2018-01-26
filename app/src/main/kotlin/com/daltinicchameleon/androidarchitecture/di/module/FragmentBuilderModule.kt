@@ -1,6 +1,8 @@
 package com.daltinicchameleon.androidarchitecture.di.module
 
+import com.daltinicchameleon.androidarchitecture.ui.feed.FeedFragment
 import dagger.Module
+import dagger.android.ContributesAndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 
 /**
@@ -9,5 +11,8 @@ import dagger.android.support.AndroidSupportInjectionModule
 
 @Module(includes = arrayOf(AndroidSupportInjectionModule::class))
 abstract class FragmentBuilderModule {
+
+    @ContributesAndroidInjector
+    abstract fun contributeFeedFragment(): FeedFragment
 
 }

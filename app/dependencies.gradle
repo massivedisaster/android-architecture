@@ -14,9 +14,7 @@ dependencies {
     kapt architecture.lifecycleCompiler
     implementation architecture.room
     kapt architecture.roomCompiler
-
-    // APP COMPAT
-    implementation appCompat.base
+    implementation architecture.paging
 
     // DAGGER
     implementation dagger.base
@@ -31,6 +29,9 @@ dependencies {
     // GLIDE
     implementation glide.base
 
+    // GSON
+    implementation gson.base
+
     // MASSIVE DISASTER
     implementation massiveDisaster.adalAccounts
     implementation massiveDisaster.adalPermissions
@@ -40,6 +41,7 @@ dependencies {
 
     // RETROFIT
     implementation retrofit.base
+    implementation retrofit.gsonConverter
 
     /** BUG REPORT **/
 

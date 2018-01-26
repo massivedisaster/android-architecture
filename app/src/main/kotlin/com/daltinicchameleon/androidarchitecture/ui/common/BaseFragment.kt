@@ -13,11 +13,9 @@ import dagger.android.support.DaggerFragment
  * Created by pedrookawa on 22/01/2018.
  */
 
-abstract class BaseFragment<out T: ViewDataBinding>: DaggerFragment() {
+abstract class BaseFragment<T: ViewDataBinding>: DaggerFragment() {
 
-    val dataBinding: T by lazy {
-        DataBindingUtil.inflate<T>(layoutInflater, layoutToInflate(), null, false)
-    }
+    lateinit var dataBinding: T
 
     @LayoutRes abstract fun layoutToInflate(): Int
 
@@ -26,6 +24,8 @@ abstract class BaseFragment<out T: ViewDataBinding>: DaggerFragment() {
     abstract fun doOnRestore(savedInstanceState: Bundle)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        dataBinding = DataBindingUtil.inflate(layoutInflater, layoutToInflate(), null, false)
+
         val view = dataBinding.root
 
         doOnCreated()

@@ -5,6 +5,10 @@ apply plugin: 'kotlin-android-extensions'
 apply from: 'dependencies.gradle'
 apply from: 'flavors.gradle'
 
+def credentialsPropertiesFile = rootProject.file("credentials.properties")
+def credentialsProperties = new Properties()
+credentialsProperties.load(new FileReader(credentialsPropertiesFile))
+
 android {
     compileSdkVersion 27
     defaultConfig {
@@ -15,6 +19,9 @@ android {
         buildConfigField "Long", "CONNECTION_TIMEOUT", "30L"
         buildConfigField "Long", "READ_TIMEOUT", "30L"
         buildConfigField "Long", "WRITE_TIMEOUT", "30L"
+        buildConfigField "String", "API_URL", "\"https://api.nasa.gov/neo/rest/v1/\""
+        buildConfigField "String", "API_KEY", credentialsProperties['apiKey']
+        buildConfigField "String", "API_DATE_FORMAT", "\"yyyy-MM-dd\""
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -31,4 +38,16 @@ android {
         androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
     }
     flavorDimensions "APP"
+
+    configurations.all {
+        resolutionStrategy.eachDependency {
+            DependencyResolveDetails details ->
+                def requested = details.requested
+                if (requested.group == 'com.android.support') {
+                    if (!requested.name.startsWith("multidex")) {
+                        details.useVersion("$appCompatVersion")
+                    }
+                }
+        }
+    }
 }
